@@ -7,6 +7,19 @@ import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
 import '@/styles/index.scss' // global css
+import component from './components'
+
+import * as filters from '@/filters'
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+
+// 自定义命令
+import * as directives from '@/directive'
+Object.keys(directives).forEach(key => {
+  // 注册自定义指令
+  Vue.directive(key, directives[key])
+})
 
 import App from './App'
 import store from './store'
@@ -15,6 +28,7 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+Vue.use(component)
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
